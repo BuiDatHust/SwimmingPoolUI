@@ -1,0 +1,26 @@
+.ticket {
+  display: flex;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: fit-content;
+  margin-bottom: 16px;
+}
+
+.ticket-qr {
+  padding-right: 12px;
+  border-right: 1px dashed #ccc;
+}
+
+.ticket-info {
+  padding-left: 12px;
+}
+
+.ticket-info div {
+  margin-bottom: 4px;
+}
+
+.ticket-title {
+  margin: 0;
+  margin-bottom: 8px;
+}

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import config from "../../config";
-import { getUserService, loginService } from "../../services";
+import { getUserService, loginService, regsiterService } from "../../services";
 import { setAuthToken } from "../../utils";
 
 export const login = createAsyncThunk(
@@ -12,7 +12,25 @@ export const login = createAsyncThunk(
 
       // Lưu token
       localStorage.setItem(config.constants.TOKEN_NAME, data.token);
-      
+
+      // Trả về user
+      return data.user;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const register = createAsyncThunk(
+  "auth/register",
+  async (formData, { rejectWithValue }) => {
+    try {
+      // Lây data
+      const data = await regsiterService(formData);
+
+      // Lưu token
+      localStorage.setItem(config.constants.TOKEN_NAME, data.token);
+
       // Trả về user
       return data.user;
     } catch (error) {
@@ -62,8 +80,23 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isAuthenticated = true;
       state.user = action.payload;
+      state.authMsg = null;
     },
     [login.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.isAuthenticated = false;
+      state.authMsg = action.payload;
+    },
+    [register.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [register.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.isAuthenticated = true;
+      state.user = action.payload;
+      state.authMsg = null;
+    },
+    [register.rejected]: (state, action) => {
       state.isLoading = false;
       state.isAuthenticated = false;
       state.authMsg = action.payload;
@@ -85,6 +118,7 @@ const authReducer = authSlice.reducer;
 // Actions
 // export const {  } = authSlice.actions;
 
+// Selector
 export const authSelector = (state) => state.authReducer;
 
 // Export reducer

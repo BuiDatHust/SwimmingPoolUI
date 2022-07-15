@@ -1,14 +1,17 @@
 @import url(./css/layouts/menu.css);
 @import url(./css/layouts/navbar.css);
 @import url(./css/layouts/content.css);
+@import url(./css/layouts/ticket.css);
 @import url(./css/pages/login.css);
 @import url(./css/components/ticket.css);
 @import url(./css/components/loading.css);
+@import url(./css/components/orderInfo.css);
 
 .App {
   height: 100vh;
   width: 100%;
   display: flex;
+  overflow: hidden;
 }
 
 .main-content {
@@ -20,7 +23,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  color: #fff;
   font-size: 14px;
 }
 
@@ -33,21 +35,19 @@
   border-radius: 8px;
   background-color: inherit;
   outline: none;
-  height: 48px;
+  height: 40px;
   padding: 0 16px;
-  color: #fff;
   font-size: 14px;
   margin-bottom: 16px;
 }
 
 .input-text::placeholder {
-  color: #fff;
   opacity: 0.6;
 }
 
 .button {
   min-width: 100px;
-  height: 48px;
+  height: 40px;
   border-radius: 6px;
   border: none;
   outline: none;

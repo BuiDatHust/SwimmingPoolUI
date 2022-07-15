@@ -28,7 +28,7 @@ const Navbar = ({ title }) => {
     <div className="navbar">
       <div className="navbar-left">
         <div className="navbar-breadcrumb">
-          <h3 className="breadcrumb-title">{title}</h3>
+          <h4 className="breadcrumb-title">{title}</h4>
           <span className="breadcrumb-link">
             {title !== "Trang chủ" ? breadcrumb : null}
           </span>

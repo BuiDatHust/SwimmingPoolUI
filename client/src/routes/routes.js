@@ -1,14 +1,16 @@
-import { HomePage, LoginPage, TicketPage } from "../pages";
+import { HomePage, LoginPage, BuyTicketPage, BuyItemPage } from "../pages";
 
-// Public routes
-const publicRoutes = [
-  { path: "/login", component: LoginPage, title: "Đăng nhập" },
+// Auth routes
+const authRoutes = [
+  { path: "/login", component: LoginPage },
+  { path: "/register", component: LoginPage },
 ];
 
-// Private routes
-const privateRoutes = [
+// User routes
+const userRoutes = [
   { path: "/", component: HomePage, title: "Trang chủ" },
-  { path: "/tickets", component: TicketPage, title: "Mua vé" },
+  { path: "/tickets", component: BuyTicketPage, title: "Mua vé" },
+  { path: "/items", component: BuyItemPage, title: "Mua đồ bơi" },
 ];
 
-export { publicRoutes, privateRoutes };
+export { authRoutes, userRoutes };

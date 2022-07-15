@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
 import { authSelector } from "../store/reducers/authSlice";
 
-const PrivateRoute = () => {
-  const { isAuthenticated } = useSelector(authSelector);
+const UserRoute = () => {
+  const { isAuthenticated, user } = useSelector(authSelector);
 
-  return isAuthenticated ? (
+  return isAuthenticated && user.role === "user" ? (
     <>
       <Outlet />
     </>
@@ -15,4 +15,4 @@ const PrivateRoute = () => {
   );
 };
 
-export default PrivateRoute;
+export default UserRoute;

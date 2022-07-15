@@ -24,6 +24,20 @@ export const loginService = async (formData) => {
   }
 };
 
+// Gọi API đăng ký
+export const regsiterService = async (formData) => {
+  try {
+    const res = await axios.post(
+      `${config.constants.API_URL}/auth/register`,
+      formData
+    );
+
+    return res.data.data;
+  } catch (error) {
+    handleException(error);
+  }
+};
+
 // Gọi API lấy user hiện tại
 export const getUserService = async () => {
   try {

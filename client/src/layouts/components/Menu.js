@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaStream, FaHome, FaCartPlus } from "react-icons/fa";
+import { FaStream, FaHome, FaCartPlus, FaSwimmer } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Menu = ({ title }) => {
@@ -15,6 +15,11 @@ const Menu = ({ title }) => {
       path: "/tickets",
       title: "Mua vé",
       icon: <FaCartPlus />,
+    },
+    {
+      path: "/items",
+      title: "Mua đồ bơi",
+      icon: <FaSwimmer />,
     },
   ];
 

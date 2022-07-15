@@ -9,11 +9,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  color: #fff;
+}
+
+.login-page a {
+  color: #8ecae6;
+}
+
+.login-page input,
+.login-page input::placeholder {
+  color: #fff;
+}
+
+.login-page button {
+  margin-bottom: 12px;
 }
 
 .login-box {
   width: 360px;
-  padding: 40px;
+  padding: 32px;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(2px);
   border-radius: 16px;

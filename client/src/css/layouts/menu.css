@@ -1,15 +1,16 @@
 .menu {
-  width: 230px;
+  width: 180px;
   padding: 0 16px;
   box-shadow: 1px 0 5px -2px #888;
 }
 
 .menu h2 {
+  font-size: 18px;
   margin: 0;
 }
 
 .menu-header {
-  padding: 20px 0;
+  padding: 12px 0;
   color: rgb(75, 75, 75);
 }
 
@@ -20,7 +21,7 @@
 
 .menu-title-icon {
   margin-right: 8px;
-  font-size: 125%;
+  font-size: 120%;
   cursor: pointer;
 }
 
@@ -59,7 +60,7 @@
 
 /* Hidden menu */
 .menu.hidden {
-  width: 44px;
+  width: 40px;
   transition: all linear 0.1s;
 }
 

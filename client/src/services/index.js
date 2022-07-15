@@ -1,1 +1,1 @@
-export { loginService, getUserService } from "./authService";
+export { loginService, regsiterService, getUserService } from "./authService";

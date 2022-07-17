@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderSelector } from "../../store/reducers/orderSlice";
 import { AiOutlineClose } from "react-icons/ai";
-import { toggleOrderInfo } from "../../store/reducers/appSlice";
+import { itemSelector, toggleItemInfo } from "../../store/reducers/itemSlice";
+import { addItemToCart } from "../../store/reducers/orderSlice";
 
-const OrderInfo = () => {
+const ItemInfo = () => {
   // State
   const [amount, setAmount] = useState(1);
   const [price, setPrice] = useState(0);
@@ -16,14 +16,14 @@ const OrderInfo = () => {
   });
 
   // Selector
-  const { itemSelected } = useSelector(orderSelector);
+  const { itemSelected } = useSelector(itemSelector);
 
   // Dispatch
   const dispatch = useDispatch();
 
   // Close popup
   const handleClosePopup = () => {
-    dispatch(toggleOrderInfo());
+    dispatch(toggleItemInfo());
   };
 
   useEffect(() => {
@@ -43,6 +43,18 @@ const OrderInfo = () => {
     if (amount > 1) {
       setAmount((prev) => prev - 1);
     }
+  };
+
+  const handleAddToCart = () => {
+    const newItem = {
+      name: item.name,
+      amount: amount,
+      price: price,
+      image: item.image,
+    };
+
+    dispatch(addItemToCart(newItem));
+    dispatch(toggleItemInfo());
   };
 
   return (
@@ -87,7 +99,9 @@ const OrderInfo = () => {
                 </div>
               </div>
             </div>
-            <button className="button">Thêm vào giỏ hàng</button>
+            <button className="button" onClick={handleAddToCart}>
+              Thêm vào giỏ hàng
+            </button>
           </div>
         </div>
       </div>
@@ -95,4 +109,4 @@ const OrderInfo = () => {
   );
 };
 
-export default OrderInfo;
+export default ItemInfo;

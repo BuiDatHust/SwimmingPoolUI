@@ -3,16 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const orderSlice = createSlice({
   name: "order",
   initialState: {
-    itemSelected: {
-      name: "",
-      price: 0,
-      quantity: 0,
-      image: "",
-    },
+    cart: [],
   },
   reducers: {
-    selectItem(state, action) {
-      state.itemSelected = action.payload;
+    addItemToCart(state, action) {
+      state.cart.unshift(action.payload);
     },
   },
 });
@@ -21,7 +16,7 @@ const orderSlice = createSlice({
 const orderReducer = orderSlice.reducer;
 
 // Action
-export const { selectItem } = orderSlice.actions;
+export const { addItemToCart } = orderSlice.actions;
 
 // Selector
 export const orderSelector = (state) => state.orderReducer;

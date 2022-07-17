@@ -1,15 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { OrderInfo } from "../../components";
-import { appSelector } from "../../store/reducers/appSlice";
+import { ItemInfo } from "../../components";
+import { itemSelector } from "../../store/reducers/itemSlice";
 
 const Content = (props) => {
-  const { isShowOrderInfo } = useSelector(appSelector);
+  const { isShowItemInfo } = useSelector(itemSelector);
 
   return (
     <div className="content">
       {props.children}
-      {isShowOrderInfo && <OrderInfo />}
+      {isShowItemInfo && <ItemInfo />}
     </div>
   );
 };

@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const orderSlice = createSlice({
   name: "order",
   initialState: {
-    cart: [],
+    cartItems: [],
+    totalPrice: 0,
   },
   reducers: {
     addItemToCart(state, action) {
-      state.cart.unshift(action.payload);
+      state.cartItems.unshift(action.payload);
+      state.totalPrice += action.payload.price;
     },
   },
 });

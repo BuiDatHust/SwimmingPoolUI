@@ -11,7 +11,8 @@
   flex-direction: column;
 }
 
-.navbar h3, .navbar h4 {
+.navbar h3,
+.navbar h4 {
   margin: 0;
 }
 
@@ -33,11 +34,18 @@
   margin-left: 12px;
 }
 
-.navbar-logout {
-  margin-left: 16px;
-  font-size: 24px;
+.navbar-item {
+  margin-left: 12px;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 20px;
   display: flex;
   align-items: center;
   color: rgb(75, 75, 75);
   cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.navbar-item:hover {
+  background-color: #e8e8e8;
 }

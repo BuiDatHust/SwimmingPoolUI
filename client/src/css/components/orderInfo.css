@@ -17,7 +17,7 @@
   display: flex;
   flex-direction: column;
   width: 480px;
-  height: 280px;
+  min-height: 280px;
 }
 
 .order-info-header {
@@ -77,4 +77,13 @@
   border: 1px solid #ccc;
   margin-left: 4px;
   cursor: pointer;
+}
+
+.item-start-time {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item-start-time span {
+  margin-bottom: 12px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import avatar from "../../assets/images/empty-avatar.jpg";
@@ -39,7 +39,12 @@ const Navbar = ({ title }) => {
           <h3 className="navbar-name">{user.name}</h3>
           <img className="navbar-avatar" src={avatar} alt="User avatar" />
         </div>
-        <div className="navbar-logout" title="Logout">
+        <Link to="/cart">
+          <div className="navbar-item navbar-cart" title="Cart">
+            <FaShoppingCart />
+          </div>
+        </Link>
+        <div className="navbar-item navbar-logout" title="Logout">
           <FaSignOutAlt onClick={handleLogout} />
         </div>
       </div>

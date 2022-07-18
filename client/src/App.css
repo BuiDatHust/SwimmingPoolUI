@@ -3,6 +3,7 @@
 @import url(./css/layouts/content.css);
 @import url(./css/layouts/ticket.css);
 @import url(./css/pages/login.css);
+@import url(./css/pages/cart.css);
 @import url(./css/components/ticket.css);
 @import url(./css/components/loading.css);
 @import url(./css/components/orderInfo.css);
@@ -60,4 +61,14 @@
 
 .button:hover {
   background-color: #0082ec;
+}
+
+.input-date {
+  border: 1px solid #959595;
+  border-radius: 6px;
+  background-color: inherit;
+  outline: none;
+  height: 32px;
+  padding: 0 12px;
+  font-size: 14px;
 }

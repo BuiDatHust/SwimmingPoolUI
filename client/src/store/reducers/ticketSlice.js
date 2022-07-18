@@ -15,7 +15,7 @@ const ticketSlice = createSlice({
         image: "https://static.toiimg.com/photo/77745542.cms?imgsize=432028",
       },
     ],
-    ticketSeleced: {
+    ticketSelected: {
       ticketType: "",
       price: 0,
       image: "",
@@ -24,7 +24,7 @@ const ticketSlice = createSlice({
   },
   reducers: {
     selectTicket(state, action) {
-      state.ticketSeleced = action.payload;
+      state.ticketSelected = action.payload;
     },
     toggleTicketInfo(state) {
       state.isShowTicketInfo = !state.isShowTicketInfo;

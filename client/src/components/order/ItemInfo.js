@@ -51,6 +51,7 @@ const ItemInfo = () => {
       amount: amount,
       price: price,
       image: item.image,
+      orderType: "item",
     };
 
     dispatch(addItemToCart(newItem));
@@ -73,7 +74,7 @@ const ItemInfo = () => {
           <div className="order-image-wrapper">
             <img className="order-image" src={item.image} alt="Ảnh sản phẩm" />
           </div>
-          {/* Thông tin mu hàng */}
+          {/* Thông tin mua hàng */}
           <div className="order-info">
             <div>
               <h4 className="item-info item-name">{item.name}</h4>

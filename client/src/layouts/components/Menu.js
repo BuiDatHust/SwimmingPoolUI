@@ -1,27 +1,54 @@
 import React, { useState } from "react";
-import { FaStream, FaHome, FaCartPlus, FaSwimmer } from "react-icons/fa";
+import { FaStream, FaHome, FaCartPlus, FaSwimmer, FaChartBar } from "react-icons/fa";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { authSelector } from "../../store/reducers/authSlice";
 
 const Menu = ({ title }) => {
   const [hidden, setHidden] = useState(false);
+  const { user } = useSelector(authSelector);
 
-  const menuItem = [
-    {
-      path: "/",
-      title: "Trang chủ",
-      icon: <FaHome />,
-    },
-    {
-      path: "/tickets",
-      title: "Mua vé",
-      icon: <FaCartPlus />,
-    },
-    {
-      path: "/items",
-      title: "Mua đồ bơi",
-      icon: <FaSwimmer />,
-    },
-  ];
+  const menuItem =
+    user.role === "admin"
+      ? [
+          {
+            path: "/",
+            title: "Trang chủ",
+            icon: <FaHome />,
+          },
+          {
+            path: "/admin/tickets",
+            title: "Bán vé",
+            icon: <FaCartPlus />,
+          },
+          {
+            path: "/admin/items",
+            title: "Đồ bơi",
+            icon: <FaSwimmer />,
+          },
+          {
+            path: "/admin/finance-managements",
+            title: "Quản lý thu chi",
+            icon: <FaChartBar />,
+          },
+        ]
+      : [
+          {
+            path: "/",
+            title: "Trang chủ",
+            icon: <FaHome />,
+          },
+          {
+            path: "/tickets",
+            title: "Mua vé",
+            icon: <FaCartPlus />,
+          },
+          {
+            path: "/items",
+            title: "Mua đồ bơi",
+            icon: <FaSwimmer />,
+          },
+        ];
 
   const toggleMenu = () => {
     setHidden(!hidden);

@@ -9,6 +9,7 @@ const ItemInfo = () => {
   const [amount, setAmount] = useState(1);
   const [price, setPrice] = useState(0);
   const [item, setItem] = useState({
+    _id: null,
     name: "",
     price: 0,
     quantity: 0,

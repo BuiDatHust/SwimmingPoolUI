@@ -4,9 +4,12 @@
 @import url(./css/layouts/ticket.css);
 @import url(./css/pages/login.css);
 @import url(./css/pages/cart.css);
+@import url(./css/pages/404.css);
+@import url(./css/pages/manage.css);
 @import url(./css/components/ticket.css);
 @import url(./css/components/loading.css);
 @import url(./css/components/orderInfo.css);
+@import url(./css/components/addPopup.css);
 
 .App {
   height: 100vh;
@@ -33,11 +36,11 @@
 
 .input-text {
   border: 1px solid #959595;
-  border-radius: 8px;
+  border-radius: 6px;
   background-color: inherit;
   outline: none;
-  height: 40px;
-  padding: 0 16px;
+  height: 32px;
+  padding: 0 12px;
   font-size: 14px;
   margin-bottom: 16px;
 }
@@ -61,6 +64,16 @@
 
 .button:hover {
   background-color: #0082ec;
+  transition: all 0.2s ease;
+}
+
+.button-secondary {
+  background-color: #edf2fb;
+  color: #000;
+}
+
+.button-secondary:hover {
+  background-color: #e6edfa;
 }
 
 .input-date {

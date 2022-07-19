@@ -1,2 +1,4 @@
 export { default as LoginPage } from "./LoginPage";
-export * from './user'
+export { default as NotFound } from "./NotFound";
+export * from "./user";
+export * from "./admin";

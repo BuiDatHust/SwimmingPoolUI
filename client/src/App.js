@@ -1,11 +1,11 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { authRoutes, userRoutes } from "./routes/routes";
+import { adminRoutes, authRoutes, userRoutes } from "./routes/routes";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { getUser } from "./store/reducers/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { authSelector, getUser } from "./store/reducers/authSlice";
 import { DefaultLayout } from "./layouts";
-import UserRoute from "./routes/UserRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +13,8 @@ function App() {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
+
+  const { user } = useSelector(authSelector);
 
   return (
     <Router>
@@ -26,7 +28,23 @@ function App() {
               element={<Page authRoute={route.path} />}></Route>
           );
         })}
-        <Route element={<UserRoute />}>
+        <Route element={<ProtectedRoute />}>
+          {user &&
+            user.role === "admin" &&
+            adminRoutes.map((route, index) => {
+              const Page = route.component;
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <DefaultLayout route={route}>
+                      <Page />
+                    </DefaultLayout>
+                  }
+                />
+              );
+            })}
           {userRoutes.map((route, index) => {
             const Page = route.component;
             return (

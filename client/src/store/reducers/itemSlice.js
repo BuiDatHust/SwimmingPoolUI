@@ -35,7 +35,7 @@ const itemSlice = createSlice({
         price: 80000,
         quantity: 200,
         image:
-          "https://caygiongbo.com/datafiles/3/2019-04-27/46931585-phao-boi-hinh-qua-bo-thao-duoc.jpg",
+          "http://intexvietnam.vn/uploads/20052020/intex-58228-phao-boi-tron-gau-pooh-cho-be-2-1.jpg",
       },
       {
         _id: 4,

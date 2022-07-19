@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #00000030;
+  background-color: #00000050;
 }
 
 .add-item-wrapper {
@@ -17,7 +17,6 @@
   display: flex;
   flex-direction: column;
   width: 560px;
-  min-height: 320px;
 }
 
 .add-item-header {

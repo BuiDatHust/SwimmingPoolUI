@@ -1,14 +1,40 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { ticketSelector } from "../../store/reducers/ticketSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AddTicket } from "../../components";
+import config from "../../config";
+import {
+  selectTicket,
+  setEditMode,
+  ticketSelector,
+  toggleAddTicket,
+} from "../../store/reducers/ticketSlice";
 
 const TicketsPage = () => {
-  const { tickets } = useSelector(ticketSelector);
+  // Dispatch, selector
+  const dispatch = useDispatch();
+
+  const { tickets, isShowAddTicket } = useSelector(ticketSelector);
+
+  // Handle event
+  const handleAddTicket = () => {
+    dispatch(setEditMode(config.editMode.ADD));
+    dispatch(selectTicket({}));
+    dispatch(toggleAddTicket());
+  };
+
+  const handleEditTicket = (ticket) => {
+    dispatch(setEditMode(config.editMode.EDIT));
+    dispatch(selectTicket(ticket));
+    dispatch(toggleAddTicket());
+  };
 
   return (
     <div className="manage-ticket-page">
       <div className="manage-header">
         <h2>Danh sách vé bơi</h2>
+        <button className="button" onClick={handleAddTicket}>
+          Thêm vé mới
+        </button>
       </div>
       <div className="manage-table">
         <table className="table">
@@ -41,7 +67,9 @@ const TicketsPage = () => {
                   <td style={{ textAlign: "center" }}>
                     <button
                       className="button"
-                      style={{ minWidth: "fit-content" }}>
+                      style={{ minWidth: "fit-content" }}
+                      onClick={handleEditTicket.bind(this, ticket)}
+                    >
                       Sửa
                     </button>
                   </td>
@@ -51,6 +79,7 @@ const TicketsPage = () => {
           </tbody>
         </table>
       </div>
+      {isShowAddTicket && <AddTicket />}
     </div>
   );
 };

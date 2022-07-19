@@ -17,7 +17,7 @@ const CartPage = () => {
       <>
         <td>
           <div className="cart-item">
-            <img className="cart-item-image" src={tk.image} />
+            <img className="cart-item-image" src={tk.image} alt="Ảnh vé bơi" />
             <div>
               {tk.ticketType === "date" ? "Vé bơi ngày" : "Vé bơi tháng"}
             </div>
@@ -48,7 +48,7 @@ const CartPage = () => {
       <>
         <td>
           <div className="cart-item">
-            <img className="cart-item-image" src={it.image} />
+            <img className="cart-item-image" src={it.image} alt="Ảnh đồ bơi" />
             <div>{it.name}</div>
           </div>
         </td>
@@ -74,7 +74,7 @@ const CartPage = () => {
     <div className="cart-page">
       <div className="cart-left">
         {cartItems.length === 0 ? (
-          <img src="https://book.smartercarrentals.com/images/cart.png" />
+          <img src="https://book.smartercarrentals.com/images/cart.png" alt="Ảnh giỏ hàng trống" />
         ) : (
           <table className="table">
             <thead>

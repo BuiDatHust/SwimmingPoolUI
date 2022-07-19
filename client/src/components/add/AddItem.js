@@ -10,26 +10,26 @@ import {
 } from "../../store/reducers/itemSlice";
 
 const AddItem = () => {
+  // UseState
   const [item, setItem] = useState({});
 
   const { itemSelected, editMode } = useSelector(itemSelector);
 
+  // Dispatch
   const dispatch = useDispatch();
 
+  // Handle event
   const handleClosePopup = () => {
     dispatch(toggleAddItem());
   };
 
   const handleSaveItem = () => {
     if (editMode === config.editMode.ADD) {
-      console.log("Add item");
       dispatch(insertItem(item));
-      dispatch(toggleAddItem());
     } else if (editMode === config.editMode.EDIT) {
-      console.log("Edit item");
       dispatch(updateItem(item));
-      dispatch(toggleAddItem());
     }
+    dispatch(toggleAddItem());
   };
 
   useEffect(() => {

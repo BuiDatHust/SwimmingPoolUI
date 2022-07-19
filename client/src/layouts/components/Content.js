@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { ItemInfo } from "../../components";
-import TicketInfo from "../../components/order/TicketInfo";
+import { ItemInfo, TicketInfo, } from "../../components";
 import { itemSelector } from "../../store/reducers/itemSlice";
 import { ticketSelector } from "../../store/reducers/ticketSlice";
 

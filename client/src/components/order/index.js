@@ -1,2 +1,2 @@
 export { default as ItemInfo } from "./ItemInfo";
-export { default as AddItem } from "./AddItem";
+export { default as TicketInfo } from "./TicketInfo";

@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemSelector, selectItem, toggleItemInfo } from "../../store/reducers/itemSlice";
+import config from "../../config";
+import {
+  getItems,
+  itemSelector,
+  selectItem,
+  toggleItemInfo,
+} from "../../store/reducers/itemSlice";
 
 const SingleItem = ({ item }) => {
   // Create dispatch
@@ -42,12 +48,17 @@ const SingleItem = ({ item }) => {
 };
 
 const BuyItemPage = () => {
+  const dispatch = useDispatch();
   const { items } = useSelector(itemSelector);
+
+  useEffect(() => {
+    dispatch(getItems({ itemType: config.itemType.SWIMMING_WARE }));
+  }, []);
 
   return (
     <div className="buy-ticket-page">
-      {items.map((item, index) => {
-        return <SingleItem item={item} key={index} />;
+      {items.map((item) => {
+        return <SingleItem item={item} key={item._id} />;
       })}
     </div>
   );

@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemSelector, selectItem, toggleItemInfo } from "../../store/reducers/itemSlice";
+import {
+  getItems,
+  itemSelector,
+  selectItem,
+  toggleItemInfo,
+} from "../../store/reducers/itemSlice";
 
 const SingleTicket = ({ ticket }) => {
   const dispatch = useDispatch();
@@ -37,11 +42,17 @@ const SingleTicket = ({ ticket }) => {
 };
 
 const BuyTicketPage = () => {
+  const dispatch = useDispatch();
   const { items } = useSelector(itemSelector);
+
+  useEffect(() => {
+    dispatch(getItems({ itemType: "ticketDate,ticketMonth" }));
+  }, []);
+
   return (
     <div className="buy-ticket-page">
-      {items.map((ticket, index) => {
-        return <SingleTicket ticket={ticket} key={index} />;
+      {items.map((ticket) => {
+        return <SingleTicket ticket={ticket} key={ticket._id} />;
       })}
     </div>
   );

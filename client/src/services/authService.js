@@ -3,12 +3,7 @@ import config from "../config";
 
 // Hàm xử lý exception
 const handleException = (error) => {
-  // Lỗi validate
-  if (error.response.data.errors) {
-    throw error.response.data.errors[0].msg;
-  }
-  // Lỗi khác
-  throw error.response.data.error.message;
+  throw error.response.data.message;
 };
 
 // Gọi API đăng nhập
@@ -18,7 +13,7 @@ export const loginService = async (formData) => {
       `${config.constants.API_URL}/auth/login`,
       formData
     );
-    return res.data.data;
+    return res.data;
   } catch (error) {
     handleException(error);
   }
@@ -32,7 +27,7 @@ export const regsiterService = async (formData) => {
       formData
     );
 
-    return res.data.data;
+    return res.data;
   } catch (error) {
     handleException(error);
   }

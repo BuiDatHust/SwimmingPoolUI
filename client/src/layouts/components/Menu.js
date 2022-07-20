@@ -39,8 +39,8 @@ const Menu = ({ title }) => {
             icon: <FaHome />,
           },
           {
-            path: "/tickets",
-            title: "Mua vé",
+            path:  "/tickets",
+            title:"Mua vé",
             icon: <FaCartPlus />,
           },
           {

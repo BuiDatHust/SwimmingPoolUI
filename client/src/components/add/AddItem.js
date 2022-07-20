@@ -8,12 +8,14 @@ import {
   toggleAddItem,
   updateItem,
 } from "../../store/reducers/itemSlice";
+import FileBase64 from "react-file-base64";
 
 const AddItem = () => {
   // UseState
   const [item, setItem] = useState({});
 
-  const { itemSelected, editMode } = useSelector(itemSelector);
+  const { itemSelected, editMode, categoryName, itemError } =
+    useSelector(itemSelector);
 
   // Dispatch
   const dispatch = useDispatch();
@@ -29,7 +31,6 @@ const AddItem = () => {
     } else if (editMode === config.editMode.EDIT) {
       dispatch(updateItem(item));
     }
-    dispatch(toggleAddItem());
   };
 
   useEffect(() => {
@@ -53,27 +54,10 @@ const AddItem = () => {
             <input
               className="input-text"
               type="text"
-              name="name"
+              name="itemName"
               placeholder="Tên sản phẩm"
               autoComplete="off"
-              value={item.name || ""}
-              onChange={(event) =>
-                setItem({
-                  ...item,
-                  [event.currentTarget.name]: event.currentTarget.value,
-                })
-              }
-            />
-          </div>
-          <div className="input-group">
-            <label className="input-label">Hình ảnh sản phẩm</label>
-            <input
-              className="input-text"
-              type="text"
-              name="image"
-              placeholder="Link ảnh sản phẩm"
-              autoComplete="off"
-              value={item.image || ""}
+              value={item.itemName || ""}
               onChange={(event) =>
                 setItem({
                   ...item,
@@ -102,14 +86,12 @@ const AddItem = () => {
             />
           </div>
           <div className="input-group">
-            <label className="input-label">Số lượng còn lại</label>
-            <input
-              className="input-text"
-              type="text"
-              name="quantity"
-              placeholder="Số lượng còn lại"
-              autoComplete="off"
-              value={item.quantity || ""}
+            <label className="input-label">Mô tả sản phẩm</label>
+            <textarea
+              name="description"
+              placeholder="Mô tả sản phẩm"
+              rows="4"
+              value={item.description || ""}
               onChange={(event) =>
                 setItem({
                   ...item,
@@ -118,6 +100,43 @@ const AddItem = () => {
               }
             />
           </div>
+          {categoryName === config.categoryName.TICKET && (
+            <div className="input-group">
+              <label className="input-label">Loại vé</label>
+              <select
+                className="input-text"
+                type="text"
+                name="itemType"
+                value={item.itemType || ""}
+                onChange={(event) =>
+                  setItem({
+                    ...item,
+                    [event.currentTarget.name]: event.currentTarget.value,
+                  })
+                }
+              >
+                <option value="">-- Chọn loại vé --</option>
+                <option value={config.itemType.DATE}>Vé ngày</option>
+                <option value={config.itemType.MONTH}>Vé tháng</option>
+              </select>
+            </div>
+          )}
+          <div className="input-group">
+            <label className="input-label">Hình ảnh sản phẩm</label>
+            <input
+              className="input-text"
+              type="text"
+              name="image"
+              value={item.image || ""}
+              onChange={(event) =>
+                setItem({
+                  ...item,
+                  [event.currentTarget.name]: event.currentTarget.value,
+                })
+              }
+            />
+          </div>
+          {itemError && <div className="login-error">{itemError}</div>}
           <div className="update-button">
             <button onClick={handleSaveItem} className="button">
               Lưu

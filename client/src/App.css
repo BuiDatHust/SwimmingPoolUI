@@ -72,6 +72,14 @@
   color: #000;
 }
 
+.button-danger {
+  background-color: #ff758f;
+}
+
+.button-danger:hover {
+  background-color: #ff4d6d;
+}
+
 .button-secondary:hover {
   background-color: #e6edfa;
 }
@@ -84,4 +92,18 @@
   height: 36px;
   padding: 0 12px;
   font-size: 14px;
+}
+
+.input-file {
+  padding: 12px 0;
+}
+
+textarea {
+  border: 1px solid #959595;
+  border-radius: 6px;
+  background-color: inherit;
+  outline: none;
+  padding: 12px;
+  font-size: 14px;
+  margin-bottom: 16px;
 }

@@ -1,17 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  selectTicket,
-  ticketSelector,
-  toggleTicketInfo,
-} from "../../store/reducers/ticketSlice";
+import { itemSelector, selectItem, toggleItemInfo } from "../../store/reducers/itemSlice";
 
 const SingleTicket = ({ ticket }) => {
   const dispatch = useDispatch();
 
   const handleBuyTicket = (tk) => {
-    dispatch(selectTicket(tk));
-    dispatch(toggleTicketInfo());
+    dispatch(selectItem(tk));
+    dispatch(toggleItemInfo());
   };
 
   return (
@@ -41,10 +37,10 @@ const SingleTicket = ({ ticket }) => {
 };
 
 const BuyTicketPage = () => {
-  const { tickets } = useSelector(ticketSelector);
+  const { items } = useSelector(itemSelector);
   return (
     <div className="buy-ticket-page">
-      {tickets.map((ticket, index) => {
+      {items.map((ticket, index) => {
         return <SingleTicket ticket={ticket} key={index} />;
       })}
     </div>

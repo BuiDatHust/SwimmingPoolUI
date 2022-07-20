@@ -11,10 +11,12 @@ export const login = createAsyncThunk(
       const data = await loginService(formData);
 
       // Lưu token
-      localStorage.setItem(config.constants.TOKEN_NAME, data.token);
+      localStorage.setItem(config.constants.TOKEN_NAME, data.data.token);
+
+      console.log(data);
 
       // Trả về user
-      return data.user;
+      return data.data.user;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -51,7 +53,7 @@ export const getUser = createAsyncThunk(
       const data = await getUserService();
 
       // Trả về payload
-      return data.user;
+      return data;
     } catch (error) {
       return rejectWithValue(error);
     }

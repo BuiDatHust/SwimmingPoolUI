@@ -5,6 +5,7 @@ import {
   getItems,
   itemSelector,
   selectItem,
+  setCategoryName,
   toggleItemInfo,
 } from "../../store/reducers/itemSlice";
 
@@ -20,6 +21,10 @@ const SingleItem = ({ item }) => {
     dispatch(toggleItemInfo());
   };
 
+  useEffect(() => {
+    dispatch(setCategoryName(config.categoryName.ITEM))
+  }, [])
+
   return (
     <>
       <div className="ticket-wrapper">
@@ -32,7 +37,7 @@ const SingleItem = ({ item }) => {
             Mua hàng
           </button>
         </div>
-        <h3>{item.name}</h3>
+        <h3>{item.itemName}</h3>
         <div className="ticket-order">
           <h2 className="ticket-price">
             {item.price.toLocaleString("vi-VN", {
@@ -40,7 +45,6 @@ const SingleItem = ({ item }) => {
               currency: "VND",
             })}
           </h2>
-          <div>Còn lại: {item.quantity}</div>
         </div>
       </div>
     </>

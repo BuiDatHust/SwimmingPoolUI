@@ -8,7 +8,6 @@ import {
   toggleAddItem,
   updateItem,
 } from "../../store/reducers/itemSlice";
-import FileBase64 from "react-file-base64";
 
 const AddItem = () => {
   // UseState

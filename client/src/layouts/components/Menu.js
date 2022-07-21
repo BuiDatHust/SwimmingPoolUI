@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { FaStream, FaHome, FaCartPlus, FaSwimmer, FaChartBar } from "react-icons/fa";
+import {
+  FaStream,
+  FaHome,
+  FaCartPlus,
+  FaSwimmer,
+  FaChartBar,
+  FaTicketAlt,
+} from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { authSelector } from "../../store/reducers/authSlice";
@@ -39,14 +46,19 @@ const Menu = ({ title }) => {
             icon: <FaHome />,
           },
           {
-            path:  "/tickets",
-            title:"Mua vé",
+            path: "/tickets",
+            title: "Mua vé",
             icon: <FaCartPlus />,
           },
           {
             path: "/items",
             title: "Mua đồ bơi",
             icon: <FaSwimmer />,
+          },
+          {
+            path: "/me",
+            title: "Vé của tôi",
+            icon: <FaTicketAlt />,
           },
         ];
 
@@ -77,7 +89,8 @@ const Menu = ({ title }) => {
               <div
                 className={
                   title === item.title ? "menu-item active" : "menu-item"
-                }>
+                }
+              >
                 <div className="menu-item-icon">{item.icon}</div>
                 {hidden ? null : (
                   <>

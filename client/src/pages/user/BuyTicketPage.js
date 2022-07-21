@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import config from "../../config";
 import {
   getItems,
   itemSelector,
   selectItem,
+  setCategoryName,
   toggleItemInfo,
 } from "../../store/reducers/itemSlice";
 
@@ -14,6 +16,10 @@ const SingleTicket = ({ ticket }) => {
     dispatch(selectItem(tk));
     dispatch(toggleItemInfo());
   };
+
+  useEffect(() => {
+    dispatch(setCategoryName(config.categoryName.TICKET));
+  }, []);
 
   return (
     <>
@@ -27,7 +33,7 @@ const SingleTicket = ({ ticket }) => {
             Mua vé
           </button>
         </div>
-        <h3>{ticket.type === "date" ? "Vé bơi ngày" : "Vé bơi tháng"}</h3>
+        <h3>{ticket.itemName}</h3>
         <div className="ticket-order">
           <h2 className="ticket-price">
             {ticket.price.toLocaleString("vi-VN", {

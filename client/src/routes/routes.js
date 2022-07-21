@@ -8,6 +8,7 @@ import {
   NotFound,
   ItemPage,
   FinanceManagements,
+  UserTicket,
 } from "../pages";
 
 // Auth routes
@@ -22,6 +23,7 @@ const userRoutes = [
   { path: "/tickets", component: BuyTicketPage, title: "Mua vé" },
   { path: "/items", component: BuyItemPage, title: "Mua đồ bơi" },
   { path: "/cart", component: CartPage, title: "Giỏ hàng" },
+  { path: "/me", component: UserTicket, title: "Vé của tôi" },
   { path: "*", component: NotFound, title: "404" },
 ];
 

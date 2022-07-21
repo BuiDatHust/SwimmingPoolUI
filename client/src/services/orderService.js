@@ -8,14 +8,20 @@ const handleException = (error) => {
 
 export const createOrderService = async (data) => {
   try {
-    const res = await axios.post(
-      `${config.constants.API_URL}/orders`,
-      data
-    );
-    await axios.patch(
+    const res = await axios.post(`${config.constants.API_URL}/orders`, data);
+    return res.data;
+  } catch (error) {
+    handleException(error);
+  }
+};
+
+export const payOrderService = async (orderId) => {
+  try {
+    const res = await axios.patch(
       `${config.constants.API_URL}/orders/pay-order`,
-      res.data.order._id
+      { orderId: orderId }
     );
+
     return res.data;
   } catch (error) {
     handleException(error);
@@ -32,7 +38,7 @@ export const updateOrderService = async (formData) => {
   } catch (error) {
     handleException(error);
   }
-}
+};
 
 export const getOrderService = async (formData) => {
   try {
@@ -44,4 +50,4 @@ export const getOrderService = async (formData) => {
   } catch (error) {
     handleException(error);
   }
-}
+};

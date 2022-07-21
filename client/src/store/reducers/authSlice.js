@@ -13,7 +13,7 @@ export const login = createAsyncThunk(
       // Lưu token
       localStorage.setItem(config.constants.TOKEN_NAME, data.data.token);
 
-      console.log(data);
+      setAuthToken(localStorage.getItem(config.constants.TOKEN_NAME));
 
       // Trả về user
       return data.data.user;
@@ -28,10 +28,20 @@ export const register = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       // Lây data
-      const data = await regsiterService(formData);
+      const res = await regsiterService(formData);
+
+      const data = await loginService({
+        phone: formData.phone,
+        password: formData.password,
+      });
 
       // Lưu token
-      localStorage.setItem(config.constants.TOKEN_NAME, data.token);
+      localStorage.setItem(config.constants.TOKEN_NAME, data.data.token);
+
+      setAuthToken(localStorage.getItem(config.constants.TOKEN_NAME));
+
+      // Trả về user
+      return data.data.user;
 
       // Trả về user
       return data.user;

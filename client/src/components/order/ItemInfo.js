@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-import { insertItem, itemSelector, toggleItemInfo } from "../../store/reducers/itemSlice";
+import {
+  itemSelector,
+  toggleItemInfo,
+} from "../../store/reducers/itemSlice";
 import { addItemToCart } from "../../store/reducers/orderSlice";
+import config from "../../config";
 
 const ItemInfo = () => {
   // State
@@ -16,8 +20,10 @@ const ItemInfo = () => {
     image: "",
   });
 
+  const [startDate, setStartDate] = useState(new Date());
+
   // Selector
-  const { itemSelected } = useSelector(itemSelector);
+  const { itemSelected, categoryName } = useSelector(itemSelector);
 
   // Dispatch
   const dispatch = useDispatch();
@@ -47,16 +53,21 @@ const ItemInfo = () => {
   };
 
   const handleAddToCart = () => {
-    const newItem = {
-      itemName: 'cdcdc',
-      description: item.description,
-      price: price,
+    let newItem = {
+      itemId: item._id,
+      itemName: item.itemName,
+      itemPrice: price,
+      itemQuantity: amount,
       image: item.image,
-      itemType: "item",
+      itemType: item.itemType,
     };
 
+    if (categoryName === config.categoryName.TICKET) {
+      console.log(111);
+      newItem = { ...newItem, startDate };
+    }
+
     dispatch(addItemToCart(newItem));
-    dispatch(insertItem(newItem))
     dispatch(toggleItemInfo());
   };
 
@@ -92,6 +103,20 @@ const ItemInfo = () => {
                   </div>
                 </div>
               </div>
+              {categoryName === config.categoryName.TICKET && (
+                <div className="item-info item-start-time">
+                  <span>Ngày bắt đầu: </span>
+                  <div style={{ display: "flex" }}>
+                    <input
+                      type="date"
+                      className="input-date"
+                      onChange={(event) =>
+                        setStartDate(event.currentTarget.value)
+                      }
+                    />
+                  </div>
+                </div>
+              )}
               <div className="item-info item-total-price">
                 <span>Tổng tiền: </span>
                 <div style={{ color: "#2196f3" }}>

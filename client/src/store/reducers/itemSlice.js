@@ -4,6 +4,8 @@ import {
   deleteItemService,
   getItemsService,
   insertItemService,
+  signTicketService,
+  ticketOwnerService,
   updateItemService,
 } from "../../services";
 
@@ -32,6 +34,14 @@ export const insertItem = createAsyncThunk(
   }
 );
 
+export const signTicket = createAsyncThunk(
+  "item/signTicket",
+  async (formData) => {
+    await signTicketService(formData);
+    return formData;
+  }
+);
+
 export const deleteItem = createAsyncThunk("item/delete", async (itemId) => {
   await deleteItemService(itemId);
   return itemId;
@@ -42,11 +52,20 @@ export const getItems = createAsyncThunk("item/get", async (itemType) => {
   return items;
 });
 
+export const ticketOwner = createAsyncThunk(
+  "item/ticketOwner",
+  async (userId) => {
+    const tickets = await ticketOwnerService(userId);
+    return tickets.data;
+  }
+);
+
 const itemSlice = createSlice({
   name: "item",
   initialState: {
     items: [],
     itemSelected: {},
+    myTickets: [],
     isShowItemInfo: false,
     isShowAddItem: false,
     editMode: config.editMode.ADD,
@@ -98,6 +117,10 @@ const itemSlice = createSlice({
     },
     [deleteItem.fulfilled]: (state, action) => {
       state.items = state.items.filter((item) => item._id !== action.payload);
+    },
+    [ticketOwner.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.myTickets = action.payload;
     },
   },
 });

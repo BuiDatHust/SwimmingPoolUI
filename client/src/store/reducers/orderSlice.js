@@ -1,18 +1,24 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createOrderService } from "../../services/orderService";
+import {
+  createOrderService,
+  payOrderService,
+} from "../../services/orderService";
 
 export const createOrder = createAsyncThunk(
-  'order/create',
-  async (data, { rejectWithValue}) => {
+  "order/create",
+  async (data, { rejectWithValue }) => {
     try {
       const res = await createOrderService(data);
-      console.log(data);
-      return res.data.order;
+      console.log(res.data._id);
+
+      await payOrderService(res.data._id);
+
+      return res;
     } catch (error) {
       return rejectWithValue(error);
     }
   }
-)
+);
 
 const orderSlice = createSlice({
   name: "order",
@@ -23,14 +29,27 @@ const orderSlice = createSlice({
   },
   reducers: {
     addItemToCart(state, action) {
-      state.cartItems.unshift(action.payload);
-      state.totalPrice += action.payload.price;
+      console.log(action.payload);
+      var indexOfItem = state.cartItems.findIndex(
+        (i) =>
+          i.itemId === action.payload.itemId &&
+          i.startDate === action.payload.startDate
+      );
+      if (indexOfItem >= 0) {
+        state.cartItems[indexOfItem].itemQuantity +=
+          action.payload.itemQuantity;
+      } else {
+        state.cartItems.unshift(action.payload);
+      }
+      state.totalPrice +=
+        action.payload.itemPrice * action.payload.itemQuantity;
     },
     removeItem(state, action) {
-      console.log(state);
-      const index = state.cartItems.indexOf(action.payload);
-      state.cartItems.splice(index,index+1);
-      state.totalPrice -= action.payload.price;
+      state.cartItems = state.cartItems.filter(
+        (item) => item.itemId !== action.payload.itemId
+      );
+      state.totalPrice -=
+        action.payload.itemPrice * action.payload.itemQuantity;
     },
   },
   extraReducers: {
@@ -38,16 +57,17 @@ const orderSlice = createSlice({
       state.isLoading = true;
     },
     [createOrder.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.cartItems = [];
+      state.totalPrice = 0;
     },
-  }
+  },
 });
 
 // Reducer
 const orderReducer = orderSlice.reducer;
 
 // Action
-export const { addItemToCart,removeItem } = orderSlice.actions;
+export const { addItemToCart, removeItem } = orderSlice.actions;
 
 // Selector
 export const orderSelector = (state) => state.orderReducer;

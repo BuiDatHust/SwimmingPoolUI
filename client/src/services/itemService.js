@@ -34,7 +34,7 @@ export const insertItemService = async (item) => {
 // Gọi API sửa item
 export const updateItemService = async (item) => {
   try {
-    var updateItem = {...item, itemId: item._id}
+    var updateItem = { ...item, itemId: item._id };
     const res = await axios.patch(
       `${config.constants.API_URL}/items/${item._id}`,
       updateItem
@@ -51,6 +51,32 @@ export const deleteItemService = async (itemId) => {
   try {
     const res = await axios.delete(
       `${config.constants.API_URL}/items/${itemId}`
+    );
+
+    return res.data;
+  } catch (error) {
+    handleException(error);
+  }
+};
+
+export const signTicketService = async (data) => {
+  try {
+    const res = await axios.post(
+      `${config.constants.API_URL}/items/sign-ticket`,
+      data
+    );
+
+    return res.data;
+  } catch (error) {
+    handleException(error);
+  }
+};
+
+export const ticketOwnerService = async (userId) => {
+  try {
+    const res = await axios.post(
+      `${config.constants.API_URL}/items/owner-ticket`,
+      { userId: userId }
     );
 
     return res.data;

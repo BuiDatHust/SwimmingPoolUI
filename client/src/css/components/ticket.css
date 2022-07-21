@@ -10,7 +10,7 @@
   border-radius: 8px;
   background-color: #fff;
   margin-bottom: 16px;
-  width: calc(50% - 60px);
+  width: calc(33.3333% - 60px);
   margin-right: 20px;
 }
 
@@ -30,4 +30,18 @@
 .ticket-title {
   margin: 0;
   margin-bottom: 8px;
+}
+
+@media screen and (max-width: 900px) {
+  .ticket {
+    width: calc(100% - 40px);
+    margin-right: 0;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1200px) {
+  .ticket {
+    width: calc(50% - 60px);
+    margin-right: 20px;
+  }
 }

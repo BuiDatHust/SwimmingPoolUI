@@ -18,6 +18,7 @@
   flex-direction: column;
   width: 480px;
   min-height: 280px;
+  margin: 16px;
 }
 
 .order-info-header {

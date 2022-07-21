@@ -1,8 +1,9 @@
 import React from "react";
-import { FaShoppingCart, FaSignOutAlt } from "react-icons/fa";
+import { FaShoppingCart, FaSignOutAlt, FaStream } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import avatar from "../../assets/images/empty-avatar.jpg";
+import { toggleMenu } from "../../store/reducers/appSlice";
 import { authSelector, logout } from "../../store/reducers/authSlice";
 
 const Navbar = ({ title }) => {
@@ -24,9 +25,17 @@ const Navbar = ({ title }) => {
     dispatch(logout());
   };
 
+  const handleShowMenu = () => {
+    console.log(111);
+    dispatch(toggleMenu());
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-left">
+        <div className="navbar-option">
+          <FaStream onClick={handleShowMenu} />
+        </div>
         <div className="navbar-breadcrumb">
           <h4 className="breadcrumb-title">{title}</h4>
           <span className="breadcrumb-link">

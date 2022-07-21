@@ -99,19 +99,19 @@ const CartPage = () => {
           <table className="table">
             <thead>
               <tr>
-                <th style={{ width: "40%" }}>
+                <th className="cart-name" style={{ width: "40%" }}>
                   <div>Sản phẩm</div>
                 </th>
-                <th style={{ width: "15%" }}>
+                <th className="cart-quantity" style={{ width: "15%" }}>
                   <div>Số lượng</div>
                 </th>
-                <th style={{ width: "15%" }}>
+                <th className="cart-price" style={{ width: "15%" }}>
                   <div>Giá tiền</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="cart-time" style={{ width: "20%" }}>
                   <div>Thời gian sử dụng</div>
                 </th>
-                <th style={{ width: "10%" }}>
+                <th className="cart-action" style={{ width: "10%" }}>
                   <div>Xóa</div>
                 </th>
               </tr>
@@ -120,7 +120,7 @@ const CartPage = () => {
               {cartItems.map((it) => {
                 return (
                   <tr key={it.itemId}>
-                    <td>
+                    <td className="cart-name">
                       <div className="cart-item">
                         <img
                           className="cart-item-image"
@@ -130,18 +130,18 @@ const CartPage = () => {
                         <div>{it.itemName}</div>
                       </div>
                     </td>
-                    <td style={{ textAlign: "center" }}>{it.itemQuantity}</td>
-                    <td style={{ textAlign: "center", color: "#2196f3" }}>
+                    <td className="cart-quantity" style={{ textAlign: "center" }}>{it.itemQuantity}</td>
+                    <td className="cart-price" style={{ textAlign: "center", color: "#2196f3" }}>
                       {it.itemPrice.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })}
                     </td>
-                    <td>
+                    <td className="cart-time">
                       {it.startDate &&
                         moment(it.startDate).format("DD/MM/YYYY")}
                     </td>
-                    <td style={{ textAlign: "center" }}>
+                    <td className="cart-action"  style={{ textAlign: "center" }}>
                       <AiOutlineClose
                         className="close-button"
                         onClick={handleRemoveItem.bind(this, it)}

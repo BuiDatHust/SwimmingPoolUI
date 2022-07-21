@@ -41,7 +41,7 @@ const TicketsPage = () => {
 
   useEffect(() => {
     dispatch(getItems({ itemType: "ticketDate,ticketMonth" }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="manage-ticket-page">
@@ -56,19 +56,19 @@ const TicketsPage = () => {
           <table className="table">
             <thead>
               <tr>
-                <th style={{ width: "20%" }}>
+                <th className="item-name" style={{ width: "30%" }}>
                   <div>Tên sản phẩm</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-price" style={{ width: "10%" }}>
                   <div>Giá bán</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-type" style={{ width: "10%" }}>
                   <div>Loại vé</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-description" style={{ width: "20%" }}>
                   <div>Mô tả</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-action" style={{ width: "30%" }}>
                   <div>Thao tác</div>
                 </th>
               </tr>
@@ -77,7 +77,7 @@ const TicketsPage = () => {
               {items.map((item) => {
                 return (
                   <tr key={item._id}>
-                    <td className="cart-item">
+                    <td className="item-name">
                       <div className="cart-item">
                         <img
                           className="cart-item-image"
@@ -87,19 +87,19 @@ const TicketsPage = () => {
                         <div>{item.itemName}</div>
                       </div>
                     </td>
-                    <td style={{ textAlign: "center", color: "#2196f3" }}>
+                    <td className="item-price" style={{ textAlign: "center", color: "#2196f3" }}>
                       {item.price.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })}
                     </td>
-                    <td style={{ textAlign: "center" }}>
+                    <td className="item-type" style={{ textAlign: "center" }}>
                       {item.itemType === config.itemType.DATE
                         ? "Vé ngày"
                         : "Vé tháng"}
                     </td>
-                    <td>{item.description}</td>
-                    <td style={{ textAlign: "center" }}>
+                    <td className="item-description">{item.description}</td>
+                    <td className="item-action" style={{ textAlign: "center" }}>
                       <button
                         className="button"
                         style={{ minWidth: "fit-content", marginRight: "12px" }}

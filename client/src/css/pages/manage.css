@@ -51,3 +51,27 @@
   align-items: center;
   margin-bottom: 12px;
 }
+
+@media screen and (max-width: 900px) {
+  .item-description, .item-type {
+    display: none;
+  }
+  .item.price {
+    width: 40%!important;
+  }
+}
+
+@media screen and (max-width: 762px) {
+  .item-price {
+    display: none;
+  }
+  .item-name, .item-action {
+    width: 50%!important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .item-name img {
+    display: none;
+  }
+}

@@ -15,6 +15,7 @@
   border-radius: 8px;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .table th {
@@ -45,4 +46,47 @@
   background-color: #fff;
   padding: 24px;
   border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+  .cart-left {
+    width: 60%;
+  }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1024px) {
+  .cart-price,
+  .cart-quantity {
+    display: none;
+  }
+  .cart-time {
+    width: 50% !important;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 900px) {
+  .cart-time,
+  .cart-price,
+  .cart-quantity {
+    display: none;
+  }
+  .cart-left {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .cart-time,
+  .cart-price,
+  .cart-quantity {
+    display: none;
+  }
+  .cart-page {
+    flex-direction: column;
+  }
+  .cart-left {
+    width: calc(100% - 48px);
+    margin-right: 0;
+  }
 }

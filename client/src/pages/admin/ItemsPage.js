@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddItem } from "../../components";
 import config from "../../config";
@@ -41,7 +41,7 @@ const ItemsPage = () => {
 
   useEffect(() => {
     dispatch(getItems({ itemType: config.itemType.SWIMMING_WARE }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="manage-ticket-page">
@@ -61,16 +61,16 @@ const ItemsPage = () => {
           <table className="table">
             <thead>
               <tr>
-                <th style={{ width: "40%" }}>
+                <th className="item-name" style={{ width: "30%" }}>
                   <div>Tên sản phẩm</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-price" style={{ width: "15%" }}>
                   <div>Giá bán</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-description" style={{ width: "25%" }}>
                   <div>Mô tả</div>
                 </th>
-                <th style={{ width: "20%" }}>
+                <th className="item-action" style={{ width: "30%" }}>
                   <div>Thao tác</div>
                 </th>
               </tr>
@@ -78,8 +78,8 @@ const ItemsPage = () => {
             <tbody>
               {items.map((item) => {
                 return (
-                  <tr key={item._id}>
-                    <td className="cart-item">
+                  <tr key={item._id} className="item-name">
+                    <td className="item-name">
                       <div className="cart-item">
                         <img
                           className="cart-item-image"
@@ -89,14 +89,17 @@ const ItemsPage = () => {
                         <div>{item.itemName}</div>
                       </div>
                     </td>
-                    <td style={{ textAlign: "center", color: "#2196f3" }}>
+                    <td
+                      className="item-price"
+                      style={{ textAlign: "center", color: "#2196f3" }}
+                    >
                       {item.price.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
                       })}
                     </td>
-                    <td>{item.description}</td>
-                    <td style={{ textAlign: "center" }}>
+                    <td className="item-description">{item.description}</td>
+                    <td className="item-action" style={{ textAlign: "center" }}>
                       <button
                         className="button"
                         style={{ minWidth: "fit-content", marginRight: "12px" }}

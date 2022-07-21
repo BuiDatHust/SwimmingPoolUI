@@ -28,7 +28,7 @@ export const register = createAsyncThunk(
   async (formData, { rejectWithValue }) => {
     try {
       // Lây data
-      const res = await regsiterService(formData);
+      await regsiterService(formData);
 
       const data = await loginService({
         phone: formData.phone,
@@ -42,9 +42,6 @@ export const register = createAsyncThunk(
 
       // Trả về user
       return data.data.user;
-
-      // Trả về user
-      return data.user;
     } catch (error) {
       return rejectWithValue(error);
     }

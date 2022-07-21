@@ -9,11 +9,23 @@
 .navbar-breadcrumb {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
 .navbar h3,
 .navbar h4 {
   margin: 0;
+}
+
+.navbar-option {
+  display: none;
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
 }
 
 .navbar-right {
@@ -48,4 +60,17 @@
 
 .navbar-item:hover {
   background-color: #e8e8e8;
+}
+
+@media screen and (max-width: 480px) {
+  .navbar-option {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .navbar-name {
+    display: none;
+  }
 }

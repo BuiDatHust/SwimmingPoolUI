@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authSelector } from "../../store/reducers/authSlice";
-import { itemSelector, ticketOwner } from "../../store/reducers/itemSlice";
+import {
+  itemSelector,
+  ticketOwner,
+} from "../../store/reducers/itemSlice";
 import { QRCodeSVG } from "qrcode.react";
 import moment from "moment";
 
@@ -14,7 +17,7 @@ const UserTicket = () => {
 
   useEffect(() => {
     dispatch(ticketOwner(user.id));
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <div className="ticket-page">
@@ -22,7 +25,7 @@ const UserTicket = () => {
         return (
           <div className="ticket" key={ticket._id}>
             <div className="ticket-qr">
-              <QRCodeSVG value={ticket.qrCode} size={96} />,
+              <QRCodeSVG value={ticket.qrCode} size={96} />
             </div>
             <div className="ticket-info">
               <div>

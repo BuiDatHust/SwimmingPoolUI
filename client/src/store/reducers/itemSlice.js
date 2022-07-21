@@ -4,6 +4,8 @@ import {
   deleteItemService,
   getItemsService,
   insertItemService,
+  itemOwnerService,
+  signItemService,
   signTicketService,
   ticketOwnerService,
   updateItemService,
@@ -60,12 +62,23 @@ export const ticketOwner = createAsyncThunk(
   }
 );
 
+export const signItem = createAsyncThunk("item/signItem", async (formData) => {
+  await signItemService(formData);
+  return formData;
+});
+
+export const itemOwner = createAsyncThunk("item/itemOwner", async (userId) => {
+  const items = await itemOwnerService(userId);
+  return items.data;
+});
+
 const itemSlice = createSlice({
   name: "item",
   initialState: {
     items: [],
     itemSelected: {},
     myTickets: [],
+    myItems: [],
     isShowItemInfo: false,
     isShowAddItem: false,
     editMode: config.editMode.ADD,
@@ -121,6 +134,10 @@ const itemSlice = createSlice({
     [ticketOwner.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.myTickets = action.payload;
+    },
+    [itemOwner.fulfilled]: (state, action) => {
+      console.log(action.payload);
+      state.myItems = action.payload;
     },
   },
 });

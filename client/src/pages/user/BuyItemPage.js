@@ -23,7 +23,7 @@ const SingleItem = ({ item }) => {
 
   useEffect(() => {
     dispatch(setCategoryName(config.categoryName.ITEM))
-  }, [])
+  }, [dispatch])
 
   return (
     <>
@@ -45,6 +45,7 @@ const SingleItem = ({ item }) => {
               currency: "VND",
             })}
           </h2>
+          <div>{item.description}</div>
         </div>
       </div>
     </>
@@ -57,7 +58,7 @@ const BuyItemPage = () => {
 
   useEffect(() => {
     dispatch(getItems({ itemType: config.itemType.SWIMMING_WARE }));
-  }, []);
+}, [dispatch]);
 
   return (
     <div className="buy-ticket-page">

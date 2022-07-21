@@ -126,6 +126,7 @@ const AddItem = () => {
               className="input-text"
               type="text"
               name="image"
+              placeholder="Link ảnh sản phẩm"
               value={item.image || ""}
               onChange={(event) =>
                 setItem({

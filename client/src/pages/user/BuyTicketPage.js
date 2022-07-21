@@ -19,7 +19,7 @@ const SingleTicket = ({ ticket }) => {
 
   useEffect(() => {
     dispatch(setCategoryName(config.categoryName.TICKET));
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -41,6 +41,7 @@ const SingleTicket = ({ ticket }) => {
               currency: "VND",
             })}
           </h2>
+          <div>{ticket.description}</div>
         </div>
       </div>
     </>
@@ -53,7 +54,7 @@ const BuyTicketPage = () => {
 
   useEffect(() => {
     dispatch(getItems({ itemType: "ticketDate,ticketMonth" }));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="buy-ticket-page">

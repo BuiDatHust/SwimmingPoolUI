@@ -1,7 +1,7 @@
 .buy-ticket-page {
   display: flex;
   flex-wrap: wrap;
-  width: calc(100% + 20px);
+  width: calc(100%);
 }
 
 .buy-ticket-page h3 {
@@ -40,8 +40,8 @@
 
 .ticket-order {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .ticket-image-button {

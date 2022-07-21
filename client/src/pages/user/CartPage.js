@@ -4,7 +4,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import config from "../../config";
 import { authSelector } from "../../store/reducers/authSlice";
-import { signTicket } from "../../store/reducers/itemSlice";
+import { signItem, signTicket } from "../../store/reducers/itemSlice";
 import {
   createOrder,
   orderSelector,
@@ -52,9 +52,22 @@ const CartPage = () => {
             user.phone +
             "Thời gian bắt đầu: " +
             moment(startDate).format("YYYY-MM-DD"),
-          description: "abc",
+          description: item.description,
         };
         dispatch(signTicket(newTicket));
+      } else {
+        console.log(item);
+        const newItem = {
+          itemName: item.itemName,
+          price: item.itemPrice,
+          image: item.image,
+          userId: user.id,
+          userName: user.name,
+          phone: user.phone,
+          itemType: item.itemType,
+          description: item.description,
+        };
+        dispatch(signItem(newItem));
       }
     });
 

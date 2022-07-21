@@ -46,7 +46,7 @@ const FinanceManagements = () => {
       {
         label: "Doanh thu ngày",
         data: datasets,
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
+        backgroundColor: "#e5383b",
       },
     ],
   };

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-import {
-  itemSelector,
-  toggleItemInfo,
-} from "../../store/reducers/itemSlice";
+import { itemSelector, toggleItemInfo } from "../../store/reducers/itemSlice";
 import { addItemToCart } from "../../store/reducers/orderSlice";
 import config from "../../config";
 
@@ -60,10 +57,10 @@ const ItemInfo = () => {
       itemQuantity: amount,
       image: item.image,
       itemType: item.itemType,
+      description: item.description,
     };
 
     if (categoryName === config.categoryName.TICKET) {
-      console.log(111);
       newItem = { ...newItem, startDate };
     }
 
@@ -91,18 +88,20 @@ const ItemInfo = () => {
           <div className="order-info">
             <div>
               <h4 className="item-info item-name">{item.name}</h4>
-              <div className="item-info item-quantity">
-                <span>Số lượng: </span>
-                <div style={{ display: "flex" }}>
-                  <div className="amount-minus" onClick={minusItem}>
-                    -
-                  </div>
-                  <div className="amount-number">{amount}</div>
-                  <div className="amount-plus" onClick={plusItem}>
-                    +
+              {categoryName === config.categoryName.ITEM && (
+                <div className="item-info item-quantity">
+                  <span>Số lượng: </span>
+                  <div style={{ display: "flex" }}>
+                    <div className="amount-minus" onClick={minusItem}>
+                      -
+                    </div>
+                    <div className="amount-number">{amount}</div>
+                    <div className="amount-plus" onClick={plusItem}>
+                      +
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
               {categoryName === config.categoryName.TICKET && (
                 <div className="item-info item-start-time">
                   <span>Ngày bắt đầu: </span>

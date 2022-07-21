@@ -7,6 +7,7 @@ import {
   FaChartBar,
   FaTicketAlt,
 } from "react-icons/fa";
+import { GiUnderwearShorts } from 'react-icons/gi'
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { authSelector } from "../../store/reducers/authSlice";
@@ -56,9 +57,14 @@ const Menu = ({ title }) => {
             icon: <FaSwimmer />,
           },
           {
-            path: "/me",
-            title: "Vé của tôi",
+            path: "/me/tickets",
+            title: "Vé bơi",
             icon: <FaTicketAlt />,
+          },
+          {
+            path: "/me/wears",
+            title: "Đồ bơi",
+            icon: <GiUnderwearShorts />,
           },
         ];
 

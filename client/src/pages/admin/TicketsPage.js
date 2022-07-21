@@ -121,7 +121,7 @@ const TicketsPage = () => {
             </tbody>
           </table>
         ) : (
-          <div>Chưa có đồ bơi nào</div>
+          <div>Chưa có vé bơi nào</div>
         )}
       </div>
       {isShowAddItem && <AddItem />}

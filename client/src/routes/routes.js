@@ -10,6 +10,7 @@ import {
   FinanceManagements,
   UserTicket,
 } from "../pages";
+import UserItem from "../pages/user/UserItem";
 
 // Auth routes
 const authRoutes = [
@@ -23,7 +24,8 @@ const userRoutes = [
   { path: "/tickets", component: BuyTicketPage, title: "Mua vé" },
   { path: "/items", component: BuyItemPage, title: "Mua đồ bơi" },
   { path: "/cart", component: CartPage, title: "Giỏ hàng" },
-  { path: "/me", component: UserTicket, title: "Vé của tôi" },
+  { path: "/me/tickets", component: UserTicket, title: "Vé bơi" },
+  { path: "/me/wears", component: UserItem, title: "Đồ bơi" },
   { path: "*", component: NotFound, title: "404" },
 ];
 

@@ -1,15 +1,23 @@
 import moment from "moment";
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import { useSelector } from "react-redux";
-import { orderSelector } from "../../store/reducers/orderSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { createOrder, orderSelector, removeItem } from "../../store/reducers/orderSlice";
 
 const CartPage = () => {
+  const dispatch = useDispatch();
   // Selector
   const { cartItems, totalPrice } = useSelector(orderSelector);
 
   const handleRemoveItem = (item) => {
     console.log(item);
+    removeItem(item);
+  };
+
+  const handleOrder = (event) => {
+    event.preventDefault();
+    const order ={};
+    dispatch(createOrder({cartItems, totalPrice}));
   };
 
   const singleTicket = (tk) => {
@@ -36,7 +44,7 @@ const CartPage = () => {
         <td style={{ textAlign: "center" }}>
           <AiOutlineClose
             className="close-button"
-            onClick={handleRemoveItem.bind(this, tk)}
+            onClick={() => handleRemoveItem(tk)}
           />
         </td>
       </>
@@ -140,7 +148,11 @@ const CartPage = () => {
             })}
           </div>
         </div>
-        <button className="button" style={{ width: "100%", marginTop: "12px" }}>
+        <button 
+          className="button" 
+          style={{ width: "100%", marginTop: "12px" }}
+          onClick={(e) => handleOrder(e) }
+        >
           Đặt hàng
         </button>
       </div>

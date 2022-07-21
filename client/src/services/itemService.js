@@ -24,7 +24,7 @@ export const getItemsService = async (itemType) => {
 export const insertItemService = async (item) => {
   try {
     const res = await axios.post(`${config.constants.API_URL}/items/`, item);
-
+    console.log(res.data);
     return res.data.data;
   } catch (error) {
     handleException(error);

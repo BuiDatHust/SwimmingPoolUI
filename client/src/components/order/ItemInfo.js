@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineClose } from "react-icons/ai";
-import { itemSelector, toggleItemInfo } from "../../store/reducers/itemSlice";
+import { insertItem, itemSelector, toggleItemInfo } from "../../store/reducers/itemSlice";
 import { addItemToCart } from "../../store/reducers/orderSlice";
 
 const ItemInfo = () => {
@@ -48,14 +48,15 @@ const ItemInfo = () => {
 
   const handleAddToCart = () => {
     const newItem = {
-      name: item.name,
-      amount: amount,
+      itemName: 'cdcdc',
+      description: item.description,
       price: price,
       image: item.image,
-      orderType: "item",
+      itemType: "item",
     };
 
     dispatch(addItemToCart(newItem));
+    dispatch(insertItem(newItem))
     dispatch(toggleItemInfo());
   };
 

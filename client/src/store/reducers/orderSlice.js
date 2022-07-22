@@ -9,7 +9,6 @@ export const createOrder = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const res = await createOrderService(data);
-      console.log(res.data._id);
 
       await payOrderService(res.data._id);
 
@@ -23,9 +22,9 @@ export const createOrder = createAsyncThunk(
 const orderSlice = createSlice({
   name: "order",
   initialState: {
-    isLoading: false,
     cartItems: [],
     totalPrice: 0,
+    isLoading: false,
   },
   reducers: {
     addItemToCart(state, action) {
@@ -51,6 +50,9 @@ const orderSlice = createSlice({
       state.totalPrice -=
         action.payload.itemPrice * action.payload.itemQuantity;
     },
+    toggleLoading(state) {
+      state.isLoading = !state.isLoading;
+    },
   },
   extraReducers: {
     [createOrder.pending]: (state, action) => {
@@ -59,6 +61,7 @@ const orderSlice = createSlice({
     [createOrder.fulfilled]: (state, action) => {
       state.cartItems = [];
       state.totalPrice = 0;
+      state.isLoading = false;
     },
   },
 });
@@ -67,7 +70,7 @@ const orderSlice = createSlice({
 const orderReducer = orderSlice.reducer;
 
 // Action
-export const { addItemToCart, removeItem } = orderSlice.actions;
+export const { addItemToCart, removeItem, toggleLoading } = orderSlice.actions;
 
 // Selector
 export const orderSelector = (state) => state.orderReducer;

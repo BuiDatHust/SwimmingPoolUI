@@ -64,7 +64,9 @@ const LoginForm = () => {
           <FaExclamationTriangle className="error-icon" /> {authMsg}
         </div>
       )}
-      <button className="button login-button">Đăng nhập</button>
+      <button className="button login-button">
+        <div className="button-text">Đăng nhập</div>
+      </button>
       <div>
         Bạn chưa có tài khoản? <Link to="/register">Đăng ký</Link>
       </div>

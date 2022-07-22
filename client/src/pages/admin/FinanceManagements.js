@@ -90,7 +90,7 @@ const FinanceManagements = () => {
           />
         </div>
         <button className="button" onClick={handleSeenChart}>
-          Xem thống kê
+          <div className="button-text">Xem thống kê</div>
         </button>
       </div>
       {isShowChart && <Bar options={options} data={data} />}

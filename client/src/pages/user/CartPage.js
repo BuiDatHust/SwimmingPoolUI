@@ -2,6 +2,7 @@ import moment from "moment";
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import { Loading } from "../../components";
 import config from "../../config";
 import { authSelector } from "../../store/reducers/authSlice";
 import { signItem, signTicket } from "../../store/reducers/itemSlice";
@@ -14,7 +15,7 @@ import {
 const CartPage = () => {
   const dispatch = useDispatch();
   // Selector
-  const { cartItems, totalPrice } = useSelector(orderSelector);
+  const { cartItems, totalPrice, isLoading } = useSelector(orderSelector);
   const { user } = useSelector(authSelector);
 
   const handleRemoveItem = (item) => {
@@ -130,8 +131,16 @@ const CartPage = () => {
                         <div>{it.itemName}</div>
                       </div>
                     </td>
-                    <td className="cart-quantity" style={{ textAlign: "center" }}>{it.itemQuantity}</td>
-                    <td className="cart-price" style={{ textAlign: "center", color: "#2196f3" }}>
+                    <td
+                      className="cart-quantity"
+                      style={{ textAlign: "center" }}
+                    >
+                      {it.itemQuantity}
+                    </td>
+                    <td
+                      className="cart-price"
+                      style={{ textAlign: "center", color: "#2196f3" }}
+                    >
                       {it.itemPrice.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
@@ -141,7 +150,7 @@ const CartPage = () => {
                       {it.startDate &&
                         moment(it.startDate).format("DD/MM/YYYY")}
                     </td>
-                    <td className="cart-action"  style={{ textAlign: "center" }}>
+                    <td className="cart-action" style={{ textAlign: "center" }}>
                       <AiOutlineClose
                         className="close-button"
                         onClick={handleRemoveItem.bind(this, it)}
@@ -171,9 +180,11 @@ const CartPage = () => {
           style={{ width: "100%", marginTop: "12px" }}
           onClick={(e) => handleOrder(e)}
         >
-          Đặt hàng
+          <div className="button-text">Đặt hàng</div>
         </button>
       </div>
+
+      {isLoading && <Loading />}
     </div>
   );
 };

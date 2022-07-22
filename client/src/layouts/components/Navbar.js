@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import avatar from "../../assets/images/empty-avatar.jpg";
 import { toggleMenu } from "../../store/reducers/appSlice";
 import { authSelector, logout } from "../../store/reducers/authSlice";
+import { orderSelector } from "../../store/reducers/orderSlice";
 
 const Navbar = ({ title }) => {
   // Selector user
   const { user } = useSelector(authSelector);
+  const { cartItems } = useSelector(orderSelector);
 
   // Dispatch
   const dispatch = useDispatch();
@@ -52,6 +54,7 @@ const Navbar = ({ title }) => {
           <Link to="/cart">
             <div className="navbar-item navbar-cart" title="Cart">
               <FaShoppingCart />
+              <div>{cartItems.length}</div>
             </div>
           </Link>
         )}

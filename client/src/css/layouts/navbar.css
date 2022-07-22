@@ -62,6 +62,23 @@
   background-color: #e8e8e8;
 }
 
+.navbar-cart {
+  position: relative;
+}
+
+.navbar-cart div {
+  position: absolute;
+  background-color: #e5383b;
+  font-size: 11px;
+  line-height: 18px;
+  padding: 0 5px;
+  border-radius: 10px;
+  position: absolute;
+  color: #fff;
+  top: 0;
+  right: 0;
+}
+
 @media screen and (max-width: 480px) {
   .navbar-option {
     display: flex;

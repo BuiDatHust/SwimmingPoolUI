@@ -16,11 +16,13 @@ const HomePage = () => {
       <div className="button-group">
         <Link to="/tickets">
           <button className="button" style={{ marginRight: "12px" }}>
-            Mua vé
+            <div className="button-text">Mua vé</div>
           </button>
         </Link>
         <Link to="/items">
-          <button className="button">Mua đồ bơi</button>
+          <button className="button">
+            <div className="button-text">Mua đò bơi</div>
+          </button>
         </Link>
       </div>
     </div>

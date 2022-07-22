@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { FaPen, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { AddItem } from "../../components";
 import config from "../../config";
@@ -53,7 +54,7 @@ const ItemsPage = () => {
             itemType: config.itemType.SWIMMING_WARE,
           })}
         >
-          Thêm mới sản phẩm
+          <div className="button-text">Thêm mới sản phẩm</div>
         </button>
       </div>
       <div className="manage-table">
@@ -105,14 +106,18 @@ const ItemsPage = () => {
                         style={{ minWidth: "fit-content", marginRight: "12px" }}
                         onClick={handleEditItem.bind(this, item)}
                       >
-                        Sửa
+                        <div className="button-text">
+                          <FaPen />
+                        </div>
                       </button>
                       <button
                         className="button button-danger"
                         style={{ minWidth: "fit-content" }}
                         onClick={handleDeleteItem.bind(this, item._id)}
                       >
-                        Xóa
+                        <div className="button-text">
+                          <FaTrash />
+                        </div>
                       </button>
                     </td>
                   </tr>

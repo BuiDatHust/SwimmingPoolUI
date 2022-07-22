@@ -82,7 +82,9 @@ const RegisterForm = () => {
           <FaExclamationTriangle className="error-icon" /> {authMsg}
         </div>
       )}
-      <button className="button login-button">Đăng ký</button>
+      <button className="button login-button">
+        <div className="button-text">Đăng ký</div>
+      </button>
       <div>
         Bạn đã có tài khoản? <Link to="/login">Đăng nhập</Link>
       </div>

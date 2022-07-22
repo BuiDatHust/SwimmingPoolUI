@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { FaPen, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { AddItem } from "../../components";
 import config from "../../config";
@@ -48,7 +49,7 @@ const TicketsPage = () => {
       <div className="manage-header">
         <h2>Danh sách vé bơi</h2>
         <button className="button" onClick={handleAddItem.bind(this, {})}>
-          Thêm mới vé bơi
+          <div className="button-text">Thêm mới vé bơi</div>
         </button>
       </div>
       <div className="manage-table">
@@ -87,7 +88,10 @@ const TicketsPage = () => {
                         <div>{item.itemName}</div>
                       </div>
                     </td>
-                    <td className="item-price" style={{ textAlign: "center", color: "#2196f3" }}>
+                    <td
+                      className="item-price"
+                      style={{ textAlign: "center", color: "#2196f3" }}
+                    >
                       {item.price.toLocaleString("vi-VN", {
                         style: "currency",
                         currency: "VND",
@@ -105,14 +109,18 @@ const TicketsPage = () => {
                         style={{ minWidth: "fit-content", marginRight: "12px" }}
                         onClick={handleEditItem.bind(this, item)}
                       >
-                        Sửa
+                        <div className="button-text">
+                          <FaPen />
+                        </div>
                       </button>
                       <button
                         className="button button-danger"
                         style={{ minWidth: "fit-content" }}
                         onClick={handleDeleteItem.bind(this, item._id)}
                       >
-                        Xóa
+                        <div className="button-text">
+                          <FaTrash />
+                        </div>
                       </button>
                     </td>
                   </tr>
